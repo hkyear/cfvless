@@ -241,7 +241,7 @@ var workers_default = {
   async fetch(request, env, ctx) {
     let address = "";
     let portWithRandomLog = "";
-    const userID = env.UUID || "b1f60b1d-a556-4372-1894-f78673d11ea0";
+    const userID = env.UUID || "f6abf726-10fa-221c-94ff-cbf580086e9b";
     const log = (info, event) => {
       console.log(`[${address}:${portWithRandomLog}] ${info}`, event || "");
     };
