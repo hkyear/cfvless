@@ -34,7 +34,7 @@ function makeReadableWebSocketStream(ws, earlyDataHeader, log) {
         if (readableStreamCancel) {
           return;
         }
-        const vlessBuffer = e.data;
+         vlessBuffer = e.data;
         controller.enqueue(vlessBuffer);
       });
       ws.addEventListener("error", (e) => {
@@ -53,7 +53,7 @@ function makeReadableWebSocketStream(ws, earlyDataHeader, log) {
           log(`websocketStream can't close DUE to `, error2);
         }
       });
-      const { earlyData, error } = base64ToArrayBuffer(earlyDataHeader);
+       { earlyData, error } = base64ToArrayBuffer(earlyDataHeader);
       if (error) {
         log(`earlyDataHeader has invaild base64`);
         safeCloseWebSocket(ws);
@@ -81,8 +81,8 @@ function base64ToArrayBuffer(base64Str) {
   }
   try {
     base64Str = base64Str.replace(/-/g, "+").replace(/_/g, "/");
-    const decode = atob(base64Str);
-    const arryBuffer = Uint8Array.from(decode, (c) => c.charCodeAt(0));
+     decode = atob(base64Str);
+     arryBuffer = Uint8Array.from(decode, (c) => c.charCodeAt(0));
     return { earlyData: arryBuffer.buffer, error: null };
   } catch (error) {
     return { error };
@@ -104,7 +104,7 @@ function processVlessHeader(vlessBuffer, userID) {
       message: "invalid data"
     };
   }
-  const version = new Uint8Array(vlessBuffer.slice(0, 1));
+   version = new Uint8Array(vlessBuffer.slice(0, 1));
   let isValidUser = false;
   let isUDP = false;
   if (stringify_default(new Uint8Array(vlessBuffer.slice(1, 17))) === userID) {
@@ -116,7 +116,7 @@ function processVlessHeader(vlessBuffer, userID) {
       message: "invalid user"
     };
   }
-  const optLength = new Uint8Array(vlessBuffer.slice(17, 18))[0];
+   optLength = new Uint8Array(vlessBuffer.slice(17, 18))[0];
   const command = new Uint8Array(
     vlessBuffer.slice(18 + optLength, 18 + optLength + 1)
   )[0];
@@ -241,7 +241,7 @@ var workers_default = {
   async fetch(request, env, ctx) {
     let address = "";
     let portWithRandomLog = "";
-    const userID = env.UUID || "b1f60b1d-a556-4372-8050-f78673d11ea0";
+    const userID = env.UUID || "b1f60b1d-a556-4372-1894-f78673d11ea0";
     const log = (info, event) => {
       console.log(`[${address}:${portWithRandomLog}] ${info}`, event || "");
     };
